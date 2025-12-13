@@ -12,6 +12,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const newQuoteText = document.getElementById('newQuoteText');
   const newQuoteCategory = document.getElementById('newQuoteCategory');
 
+
+  function displayRandomQuote() {
+  const selectedCategory = categoryFilter.value;
+
+  const filteredQuotes =
+    selectedCategory === 'all'
+      ? quotes
+      : quotes.filter(q => q.category === selectedCategory);
+
+  if (filteredQuotes.length === 0) {
+    quoteDisplay.textContent = "No quotes available.";
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
+  const randomQuote = filteredQuotes[randomIndex];
+
+  quoteDisplay.textContent = `"${randomQuote.text}" — (${randomQuote.category})`;
+
+  // Store last viewed quote (session storage requirement)
+  sessionStorage.setItem('lastQuote', JSON.stringify(randomQuote));
+}
+
   // Load quotes from Local Storage
   let quotes = JSON.parse(localStorage.getItem('quotes')) || [
     { text: "Learning never exhausts the mind.", category: "Education" },
@@ -144,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event listeners
-  categoryFilter.addEventListener('change', filterQuotes);
-  newQuoteBtn.addEventListener('click', filterQuotes);
+  categoryFilter.addEventListener('change', displayRandomQuote);
+  newQuoteBtn.addEventListener('click', displayRandomQuote);
   addQuoteBtn.addEventListener('click', addQuote);
   exportBtn.addEventListener('click', exportQuotes);
   importFile.addEventListener('change', importFromJsonFile);
