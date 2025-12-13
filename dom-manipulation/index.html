@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dynamic Quote Generator</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header>
+  <main class="container">
     <h1>Dynamic Quote Generator</h1>
-    <p>Create, filter, save & sync quotes</p>
-  </header>
 
-  <!-- Sync Status -->
-  <div id="syncStatus" class="status"></div>
+    <!-- Quote Display -->
+    <div id="quoteDisplay" class="quote-box">
+      Click the button to see a quote
+    </div>
 
-  <!-- Category Filter -->
-  <section class="controls">
-    <select id="categoryFilter"></select>
-    <button id="newQuote">Show Quote</button>
-    <button id="syncNow">Sync with Server</button>
-  </section>
+    <!-- Show Quote Button -->
+    <button id="newQuote">Show New Quote</button>
 
-  <!-- Quote Display -->
-  <div id="quoteDisplay" class="quote-box">
-    Select a category or show a quote
-  </div>
+    <!-- Add New Quote -->
+    <section class="add-quote">
+      <h2>Add a New Quote</h2>
+      <input
+        type="text"
+        id="newQuoteText"
+        placeholder="Enter quote text"
+      />
+      <input
+        type="text"
+        id="newQuoteCategory"
+        placeholder="Enter quote category"
+      />
+      <button onclick="addQuote()">Add Quote</button>
+    </section>
 
-  <!-- Add Quote -->
-  <section class="add-quote">
-    <h2>Add New Quote</h2>
-    <input type="text" id="newQuoteText" placeholder="Quote text" />
-    <input type="text" id="newQuoteCategory" placeholder="Category" />
-    <button id="addQuoteBtn">Add Quote</button>
-  </section>
+    <!-- Import / Export -->
+    <section class="storage-actions">
+      <button onclick="exportQuotes()">Export Quotes (JSON)</button>
 
-  <!-- Import / Export -->
-  <section class="import-export">
-    <h2>Import / Export Quotes</h2>
-    <button id="exportQuotes">Export Quotes</button>
-    <input type="file" id="importFile" accept=".json" />
-  </section>
-
-  <footer>
-    <p>© 2025 Dynamic Quote Generator</p>
-  </footer>
+      <input
+        type="file"
+        id="importFile"
+        accept=".json"
+      />
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
