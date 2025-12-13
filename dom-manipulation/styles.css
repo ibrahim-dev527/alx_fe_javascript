@@ -1,29 +1,81 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-      text-align: center;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+}
 
-    #quoteDisplay {
-      background: #fff;
-      padding: 20px;
-      margin: 20px auto;
-      width: 80%;
-      border-radius: 8px;
-      font-size: 1.2rem;
-    }
+header {
+  margin-bottom: 20px;
+}
 
-    input {
-      padding: 10px;
-      margin: 5px;
-      width: 250px;
-    }
+.status {
+  margin: 10px;
+  font-weight: bold;
+  color: green;
+}
 
-    button {
-      padding: 10px 15px;
-      margin: 10px;
-      cursor: pointer;
-    }
-  
+.controls {
+  margin: 15px 0;
+}
+
+.controls select,
+.controls button {
+  padding: 10px;
+  margin: 5px;
+}
+
+.quote-box {
+  background: #fff;
+  padding: 25px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.add-quote,
+.import-export {
+  margin-top: 25px;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+  width: 250px;
+  max-width: 90%;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@media (max-width: 600px) {
+  .quote-box {
+    font-size: 1rem;
+  }
+}

@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Dynamic Quote Generator</title>
-  <link rel="stylesheet" href="styles.css">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <h1>Dynamic Quote Generator</h1>
+  <header>
+    <h1>Dynamic Quote Generator</h1>
+    <p>Create, filter, save & sync quotes</p>
+  </header>
 
-  <!-- Quote Display Area -->
-  <div id="quoteDisplay">Click the button to see a quote</div>
+  <!-- Sync Status -->
+  <div id="syncStatus" class="status"></div>
 
-  <!-- Show Quote Button -->
-  <button id="newQuote">Show New Quote</button>
+  <!-- Category Filter -->
+  <section class="controls">
+    <select id="categoryFilter"></select>
+    <button id="newQuote">Show Quote</button>
+    <button id="syncNow">Sync with Server</button>
+  </section>
 
-  <!-- Add Quote Section -->
-  <div>
-    <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-    <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-    <button id="addQuoteBtn">Add Quote</button>
+  <!-- Quote Display -->
+  <div id="quoteDisplay" class="quote-box">
+    Select a category or show a quote
   </div>
+
+  <!-- Add Quote -->
+  <section class="add-quote">
+    <h2>Add New Quote</h2>
+    <input type="text" id="newQuoteText" placeholder="Quote text" />
+    <input type="text" id="newQuoteCategory" placeholder="Category" />
+    <button id="addQuoteBtn">Add Quote</button>
+  </section>
+
+  <!-- Import / Export -->
+  <section class="import-export">
+    <h2>Import / Export Quotes</h2>
+    <button id="exportQuotes">Export Quotes</button>
+    <input type="file" id="importFile" accept=".json" />
+  </section>
+
+  <footer>
+    <p>© 2025 Dynamic Quote Generator</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
