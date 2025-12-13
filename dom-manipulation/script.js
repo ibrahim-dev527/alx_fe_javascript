@@ -146,6 +146,82 @@ document.addEventListener("DOMContentLoaded", function () {
       `"${quote.text}" — (${quote.category})`;
   }
 
+
+
+  // ---------------------------
+// FETCH QUOTES FROM SERVER (REQUIRED)
+// ---------------------------
+async function fetchQuotesFromServer() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
+    const data = await response.json();
+
+    const serverQuotes = data.map(post => ({
+      text: post.title,
+      category: "Server"
+    }));
+
+    // Conflict resolution: server wins
+    quotes = serverQuotes;
+    saveQuotes();
+
+    notifyUser("Quotes updated from server.");
+  } catch (error) {
+    console.error("Server fetch failed", error);
+  }
+}
+
+// ---------------------------
+// POST QUOTE TO SERVER (REQUIRED)
+// ---------------------------
+async function postQuoteToServer(quote) {
+  try {
+    await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(quote)
+    });
+  } catch (error) {
+    console.error("Failed to post quote", error);
+  }
+}
+
+// ---------------------------
+// SYNC QUOTES FUNCTION (REQUIRED)
+// ---------------------------
+function syncQuotes() {
+  fetchQuotesFromServer();
+}
+
+// ---------------------------
+// UI Notification (REQUIRED)
+// ---------------------------
+function notifyUser(message) {
+  const notification = document.createElement("div");
+  notification.textContent = message;
+  notification.style.background = "#d4edda";
+  notification.style.padding = "10px";
+  notification.style.marginTop = "10px";
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => notification.remove(), 3000);
+}
+
+// ---------------------------
+// DOM CONTENT LOADED
+// ---------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  loadQuotes();
+  showRandomQuote();
+  createAddQuoteForm();
+
+  document.getElementById("newQuote").addEventListener("click", showRandomQuote);
+
+  // Periodic sync every 30 seconds (REQUIRED)
+  setInterval(syncQuotes, 30000);
+});
+
   // =========================
   // EVENT LISTENERS
   // =========================
