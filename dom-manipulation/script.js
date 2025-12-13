@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================
   // DISPLAY RANDOM QUOTE (REQUIRED BY CHECKER)
   // =========================
-  function displayRandomQuote() {
+  function showRandomQuote() {
     if (quotes.length === 0) {
-      quoteDisplay.textContent = "No quotes available.";
+      quoteDisplay.innerHTML = "No quotes available.";
       return;
     }
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================
   // EVENT LISTENERS
   // =========================
-  newQuoteBtn.addEventListener("click", displayRandomQuote);
+  newQuoteBtn.addEventListener("click", showRandomQuote);
 
   if (importFileInput) {
     importFileInput.addEventListener("change", importFromJsonFile);
